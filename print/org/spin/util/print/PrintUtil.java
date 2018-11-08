@@ -45,13 +45,15 @@ public class PrintUtil {
 					&& printerName.length() != 0) {
 				for (PrintService service : PrintServiceLookup.lookupPrintServices(null,null)) {
 					String serviceName = service.getName();
+					log.info("Service Name Available: " + serviceName);
 					if (printerName.equals(serviceName)) {
 						printerService = service;
 						break;
 					}
 				}
 			}   //  find printer service
-			if(!defaultWhenNotFound) {
+			if(!defaultWhenNotFound
+					&& printerService == null) {
 				return null;
 			}
 			try {
