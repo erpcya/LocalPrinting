@@ -1,0 +1,53 @@
+plugins {
+    id 'java-library'
+}
+
+java {
+	sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+repositories {
+    jcenter()
+    flatDir {
+       dirs 'dependences', 'lib'
+	}
+}
+
+sourceSets {
+    main {
+         java {
+            srcDirs = ['print/src/main/java/base']
+         }
+    }
+}
+
+dependencies {
+    implementation name: 'activemq-all-5.15.7'
+    // https://mvnrepository.com/artifact/com.sun.jna/jna
+	//compile group: 'com.sun.jna', name: 'jna', version: '3.0.9'
+}
+
+// Provide convenience executables for trying out the examples.
+apply plugin: 'application'
+
+startScripts.enabled = false
+
+task PrintService(type: CreateStartScripts) {
+    mainClassName = 'org.spin.util.print.PrintService'
+    applicationName = 'print-service'
+    outputDir = new File(project.buildDir, 'tmp')
+    classpath = jar.outputs.files + project.configurations.runtime
+}
+
+jar {
+    manifest {
+        attributes('Implementation-Title': project.name,
+                   'Implementation-Version': project.version)
+    }
+}
+
+applicationDistribution.into('bin') {
+	from(PrintService)
+    fileMode = 0755
+}
