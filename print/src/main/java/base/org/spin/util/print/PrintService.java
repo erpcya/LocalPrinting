@@ -57,8 +57,8 @@ public class PrintService implements Runnable {
     		throw new Exception("Arguments Not Found");
     	}
     	//	
-    	if(args.length < 6) {
-    		throw new Exception("Arguments Must Be: [Host, User, Password, Queue, Printer Name, Printer Home, Connetion Interval]");
+    	if(args.length < 5) {
+    		throw new Exception("Arguments Must Be: [Host, User, Password, Queue, Printer Home, Printer Name, Connetion Interval]");
     	}
     	//	Get sleep interval
     	long connectionInterval = 0;
@@ -80,7 +80,7 @@ public class PrintService implements Runnable {
      * @param homeFolder
      * @param connectionInterval
      */
-    public PrintService(String host, String user, String password, String queue, String printerName, String homeFolder, long connectionInterval) {
+    public PrintService(String host, String user, String password, String queue, String homeFolder, String printerName, long connectionInterval) {
     	this.host = host;
     	this.user = user;
     	this.password = password;

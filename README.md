@@ -20,9 +20,9 @@ docker pull rmohr/activemq
 - User: admin
 - Password: admin
 - Queue: printing
-- Printer Name: LX300
 - Home Folder: /tmp
-- Connection Interval: 10000
+- Printer Name: LX300 (Optional)
+- Connection Interval: 10000 (Optional)
 
 
 Note: Server / Producer is not here!!! You can implement like is showed from official ActiveMQ for java: http://activemq.apache.org/hello-world.html
