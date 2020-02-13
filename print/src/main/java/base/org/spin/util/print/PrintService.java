@@ -60,13 +60,18 @@ public class PrintService implements Runnable {
     	if(args.length < 5) {
     		throw new Exception("Arguments Must Be: [Host, User, Password, Queue, Printer Home, Printer Name, Connetion Interval]");
     	}
+    	// Is there a printer name?
+    	String printerName = null;
+    	if(args.length > 5) {
+    		printerName = args[5];
+    	}
     	//	Get sleep interval
     	long connectionInterval = 0;
     	if(args.length > 6) {
     		connectionInterval = Long.parseLong(args[6]);
     	}
     	//	Get Parameters
-    	PrintService service = new PrintService(args[0], args[1], args[2], args[3], args[4], args[5], connectionInterval);
+    	PrintService service = new PrintService(args[0], args[1], args[2], args[3], args[4], printerName, connectionInterval);
     	service.start();
     }
     
