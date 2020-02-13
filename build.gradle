@@ -9,9 +9,6 @@ java {
 
 repositories {
     jcenter()
-    flatDir {
-       dirs 'dependences', 'lib'
-	}
 }
 
 sourceSets {
@@ -23,9 +20,8 @@ sourceSets {
 }
 
 dependencies {
-    implementation name: 'activemq-all-5.15.7'
-    // https://mvnrepository.com/artifact/com.sun.jna/jna
-	//compile group: 'com.sun.jna', name: 'jna', version: '3.0.9'
+    compile fileTree(dir: 'dependences', include: ['*.jar'])
+	compile fileTree(dir: 'lib', include: ['*.jar'])
 }
 
 // Provide convenience executables for trying out the examples.
